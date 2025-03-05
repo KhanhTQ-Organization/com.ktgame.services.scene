@@ -27,8 +27,6 @@ namespace com.ktgame.services.scene
 			EnterTransition?.Initialize();
 			ExitTransition?.Initialize();
 			Loading?.Initialize();
-
-			Debug.Log("init scene");
 		}
 
 		public void SetLoading(ISceneLoading loading)
