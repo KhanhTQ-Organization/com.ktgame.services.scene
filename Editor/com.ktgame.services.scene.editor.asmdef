@@ -1,0 +1,19 @@
+{
+    "name": "com.ktgame.services.scene.editor",
+    "rootNamespace": "com.ktgame.services.scene.editor",
+    "references": [
+        "GUID:ea2ae37156ab74bd0b7bf06641413d82",
+        "GUID:bb8710c3ac399524aaaa9236b84aab66"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
