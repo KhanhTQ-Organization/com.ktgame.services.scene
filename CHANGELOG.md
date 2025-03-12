@@ -1,3 +1,10 @@
+## [1.0.3](https://github.com/KhanhTQ-hub/com.ktgame.services.scene/compare/v1.0.2...v1.0.3) (2025-03-12)
+
+
+### Bug Fixes
+
+* sceneServiceExtension ([608ca41](https://github.com/KhanhTQ-hub/com.ktgame.services.scene/commit/608ca41709660ebdcd9a0dab0c15eae754df4d01))
+
 ## [1.0.2](https://github.com/KhanhTQ-hub/com.ktgame.services.scene/compare/v1.0.1...v1.0.2) (2025-03-10)
 
 
