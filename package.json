@@ -9,8 +9,11 @@
     "url": "https://github.com/KhanhTQ-hub/com.ktgame.foundation.git"
   },
   "dependencies": {
-    "com.ktgame.core": "1.0.1",
-    "com.ktgame.utils.class-type-reference": "1.0.0",
-    "com.ktgame.unitask": "1.0.0"
+    "com.ktgame.core": "1.0.9",
+    "com.ktgame.utils.class-type-reference": "1.0.2",
+    "com.ktgame.unitask": "1.0.3"
+  },
+  "publishConfig": {
+    "registry": "http://3.25.208.95:4873"
   }
 }
