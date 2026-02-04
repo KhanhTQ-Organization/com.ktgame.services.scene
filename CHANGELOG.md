@@ -1,3 +1,10 @@
+## [1.0.5](https://github.com/KhanhTQ-Organization/com.ktgame.services.scene/compare/v1.0.4...v1.0.5) (2026-02-04)
+
+
+### Bug Fixes
+
+* update addressable ([3e7aca2](https://github.com/KhanhTQ-Organization/com.ktgame.services.scene/commit/3e7aca2d778c124c2918c6cdc82c12ffc4bcd271))
+
 ## [1.0.4](https://github.com/KhanhTQ-Organization/com.ktgame.services.scene/compare/v1.0.3...v1.0.4) (2025-07-04)
 
 
