@@ -37,12 +37,11 @@ namespace com.ktgame.services.scene
             _architecture = architecture;
             _settings = SceneServiceSettings.Instance;
 
-            // _loader = _settings.LoaderType switch
-            // {
-            // 	SceneLoaderType.Addressable => new AddressableSceneLoader(),
-            // 	_ => new SceneLoader()
-            // };
-            _loader = new SceneLoader();
+            _loader = _settings.LoaderType switch
+            {
+            	SceneLoaderType.Addressable => new AddressableSceneLoader(),
+            	_ => new SceneLoader()
+            };
 
             foreach (var scene in _settings.Scenes)
             {
