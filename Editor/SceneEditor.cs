@@ -28,6 +28,8 @@ namespace com.ktgame.services.scene.editor
             }
         }
 
+        [PropertySpace(20)]
+        [Title("Scene Setting", Bold = true)]
         [ShowInInspector] 
         [LabelText("Starting Scene")]
         [SerializeField, ClassExtends(typeof(Scene))]
