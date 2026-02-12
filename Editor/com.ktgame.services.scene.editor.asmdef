@@ -3,7 +3,9 @@
     "rootNamespace": "com.ktgame.services.scene.editor",
     "references": [
         "GUID:ea2ae37156ab74bd0b7bf06641413d82",
-        "GUID:bb8710c3ac399524aaaa9236b84aab66"
+        "GUID:bb8710c3ac399524aaaa9236b84aab66",
+        "GUID:07fa84c8891424e60a3080653dd9d1e0",
+        "GUID:b9d2710be458f3a4db36cac2ec4e4066"
     ],
     "includePlatforms": [
         "Editor"

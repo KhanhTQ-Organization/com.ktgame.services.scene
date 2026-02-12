@@ -17,11 +17,23 @@ namespace com.ktgame.services.scene
 
         [SerializeField] private List<SceneData> _scenes;
 
-        public SceneLoaderType LoaderType => _loaderType;
+        public SceneLoaderType LoaderType
+        {
+            get => _loaderType;
+            set => _loaderType = value;
+        }
 
-        public Type StartingScene => _startingScene;
+        public Type StartingScene
+        {
+            get => _startingScene;
+            set => _startingScene = value;
+        }
 
-        public List<SceneData> Scenes => _scenes ?? new List<SceneData>();
+        public List<SceneData> Scenes
+        {
+            get => _scenes ?? new List<SceneData>();
+            set => _scenes = value;
+        }
 
         public SceneData GetScene(string sceneName)
         {

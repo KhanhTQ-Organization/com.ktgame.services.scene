@@ -13,8 +13,16 @@ namespace com.ktgame.services.scene
         [SerializeField, ClassExtends(typeof(Scene)), FoldoutGroup("$_sceneName")] 
         private ClassTypeReference _sceneType;
 
-        public string SceneName => _sceneName;
+        public string SceneName
+        {
+            get => _sceneName;
+            set => _sceneName = value;
+        }
 
-        public Type SceneType => _sceneType;
+        public ClassTypeReference SceneType 
+        {
+            get => _sceneType;
+            set => _sceneType = value;
+        }
     }
 }
