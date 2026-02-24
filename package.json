@@ -1,6 +1,6 @@
 {
   "name": "com.ktgame.services.scene",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "displayName": "com.ktgame.services.scene",
   "description": "KTgame Scene Services",
   "author": {
@@ -9,7 +9,7 @@
     "url": "https://github.com/KhanhTQ-hub/com.ktgame.foundation.git"
   },
   "dependencies": {
-    "com.ktgame.core": "1.0.9",
+    "com.ktgame.core": "1.0.10",
     "com.ktgame.utils.class-type-reference": "1.0.2",
     "com.ktgame.unitask": "1.0.3"
   },
