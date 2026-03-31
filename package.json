@@ -1,6 +1,6 @@
 {
   "name": "com.ktgame.services.scene",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "displayName": "com.ktgame.services.scene",
   "description": "KTgame Scene Services",
   "author": {
@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "com.ktgame.core": "1.0.10",
-    "com.ktgame.utils.class-type-reference": "1.0.2",
+    "com.ktgame.utils.class-type-reference": "1.0.3",
     "com.ktgame.unitask": "1.0.3"
   },
   "publishConfig": {

@@ -30,11 +30,15 @@ namespace com.ktgame.services.scene.editor
 
         [PropertySpace(20)]
         [Title("Scene Setting", Bold = true)]
-        [ShowInInspector] 
+        [ShowInInspector]
         [LabelText("Starting Scene")]
-        [SerializeField, ClassExtends(typeof(Scene))]
-        public ClassTypeReference StartingScene;
-        
+        [ClassExtends(typeof(Scene))]
+        public ClassTypeReference StartingScene
+        {
+            get => _sceneSo.StartingScene;
+            set => _sceneSo.StartingScene = value;
+        }
+
         [ListDrawerSettings(CustomAddFunction = "CreateNewParameter")]
         [TableList(ShowIndexLabels = true, AlwaysExpanded = true)]
         [ShowInInspector]

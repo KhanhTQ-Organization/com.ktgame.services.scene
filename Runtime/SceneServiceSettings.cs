@@ -26,7 +26,7 @@ namespace com.ktgame.services.scene
         public Type StartingScene
         {
             get => _startingScene;
-            set => _startingScene = value;
+            set => _startingScene = new ClassTypeReference(value);
         }
 
         public List<SceneData> Scenes
