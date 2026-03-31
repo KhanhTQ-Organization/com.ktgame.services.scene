@@ -1,3 +1,10 @@
+## [1.0.8](https://github.com/KhanhTQ-Organization/com.ktgame.services.scene/compare/v1.0.7...v1.0.8) (2026-03-31)
+
+
+### Bug Fixes
+
+* update scene ([caeb6c5](https://github.com/KhanhTQ-Organization/com.ktgame.services.scene/commit/caeb6c52ffc5461bbae6d35209789f49d5ff8d2a))
+
 ## [1.0.7](https://github.com/KhanhTQ-Organization/com.ktgame.services.scene/compare/v1.0.6...v1.0.7) (2026-02-24)
 
 
