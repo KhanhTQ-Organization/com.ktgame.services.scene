@@ -39,8 +39,8 @@ namespace com.ktgame.services.scene
 
             _loader = _settings.LoaderType switch
             {
-            	SceneLoaderType.Addressable => new AddressableSceneLoader(),
-            	_ => new SceneLoader()
+                SceneLoaderType.Addressable => new AddressableSceneLoader(),
+                _ => new SceneLoader()
             };
 
             foreach (var scene in _settings.Scenes)
@@ -78,7 +78,9 @@ namespace com.ktgame.services.scene
             }
         }
 
-        public void OnSceneUnload(string sceneName) { }
+        public void OnSceneUnload(string sceneName)
+        {
+        }
 
         public void AddLoadingTask(ISceneLoadingTask loadingTask)
         {
@@ -106,28 +108,28 @@ namespace com.ktgame.services.scene
                         await CurrentScene.ExitTransition.PlayAsync();
                     }
 
-                var nextSceneData = GetSceneData(sceneName);
-                _loader.Load(nextSceneData.SceneName, LoadSceneMode.Single);
+                    var nextSceneData = GetSceneData(sceneName);
+                    _loader.Load(nextSceneData.SceneName, LoadSceneMode.Single);
 
-                while (_isSceneLoading)
-                {
-                    await UniTask.Yield();
-                }
+                    while (_isSceneLoading)
+                    {
+                        await UniTask.Yield();
+                    }
 
-                _currentSceneData = nextSceneData;
-                CurrentScene = GetScene(_currentSceneData.SceneName);
-                if (CurrentScene != null)
-                {
-                    _architecture.Injector.Resolve(CurrentScene);
-                    CurrentScene.EnterTransition?.PlayAsync().Forget();
-                    await CurrentScene.Enter();
+                    _currentSceneData = nextSceneData;
+                    CurrentScene = GetScene(_currentSceneData.SceneName);
+                    if (CurrentScene != null)
+                    {
+                        _architecture.Injector.Resolve(CurrentScene);
+                        CurrentScene.EnterTransition?.PlayAsync().Forget();
+                        await CurrentScene.Enter();
+                    }
                 }
-            }
-            finally
-            {
-                _isSceneLoading = false;
-                _loadingTasks.Clear();
-            }
+                finally
+                {
+                    _isSceneLoading = false;
+                    _loadingTasks.Clear();
+                }
             }
             catch (Exception e)
             {
@@ -213,15 +215,15 @@ namespace com.ktgame.services.scene
             {
                 var nextSceneData = GetSceneData(sceneName);
                 var operationHandle = _loader.LoadAsync(nextSceneData.SceneName, loadSceneMode);
-            operationHandle.AllowSceneActivation(false);
+                operationHandle.AllowSceneActivation(false);
 
-            var sceneLoadingTask = new SceneLoadingTask(operationHandle);
-            var allTasks = new List<ISceneLoadingTask> { sceneLoadingTask };
+                var sceneLoadingTask = new SceneLoadingTask(operationHandle);
+                var allTasks = new List<ISceneLoadingTask> { sceneLoadingTask };
 
-            if (_loadingTasks.Count > 0)
-            {
-                allTasks.AddRange(_loadingTasks);
-            }
+                if (_loadingTasks.Count > 0)
+                {
+                    allTasks.AddRange(_loadingTasks);
+                }
 
                 if (CurrentScene?.ExitTransition != null)
                 {
@@ -231,9 +233,9 @@ namespace com.ktgame.services.scene
                 CurrentScene?.Loading?.OnLoading(0f);
                 CurrentScene?.Loading?.OnStart();
 
-            var tasks = allTasks.OrderBy(task => task.Priority).ToList();
-            var totalWeight = allTasks.Sum(task => task.Weight);
-            var taskProgresses = new float[tasks.Count];
+                var tasks = allTasks.OrderBy(task => task.Priority).ToList();
+                var totalWeight = allTasks.Sum(task => task.Weight);
+                var taskProgresses = new float[tasks.Count];
 
                 for (var i = 0; i < tasks.Count; i++)
                 {
@@ -285,16 +287,16 @@ namespace com.ktgame.services.scene
 
                 CurrentScene?.Loading?.OnCompleted();
 
-            while (_isSceneLoading)
-            {
-                await UniTask.Yield();
-            }
+                while (_isSceneLoading)
+                {
+                    await UniTask.Yield();
+                }
 
-            var unloadOperation = Resources.UnloadUnusedAssets();
-            while (!unloadOperation.isDone)
-            {
-                await UniTask.Yield();
-            }
+                var unloadOperation = Resources.UnloadUnusedAssets();
+                while (!unloadOperation.isDone)
+                {
+                    await UniTask.Yield();
+                }
 
                 _currentSceneData = nextSceneData;
                 CurrentScene = GetScene(_currentSceneData.SceneName);
@@ -317,6 +319,7 @@ namespace com.ktgame.services.scene
             if (HasSceneType(sceneName))
             {
                 var scenes = UnityEngine.Object.FindObjectsOfType<Scene>(true);
+
                 foreach (var scene in scenes)
                 {
                     if (scene.gameObject.scene.name == sceneName)
@@ -324,7 +327,19 @@ namespace com.ktgame.services.scene
                         return scene;
                     }
                 }
+
+#if UNITY_EDITOR
+                var activeScene = UnityEngine.SceneManagement.SceneManager.GetActiveScene();
+                foreach (var scene in scenes)
+                {
+                    if (scene.gameObject.scene == activeScene)
+                    {
+                        return scene;
+                    }
+                }
+#endif
             }
+
             return null;
         }
 
