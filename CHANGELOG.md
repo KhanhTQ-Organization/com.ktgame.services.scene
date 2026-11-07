@@ -1,3 +1,10 @@
+## [1.0.14](https://github.com/KhanhTQ-Organization/com.ktgame.services.scene/compare/v1.0.13...v1.0.14) (2026-11-07)
+
+
+### Bug Fixes
+
+* big update load scene ([c95d6c1](https://github.com/KhanhTQ-Organization/com.ktgame.services.scene/commit/c95d6c1b372992aa6479a7c61c3dfc5f3ddb92c6))
+
 ## [1.0.13](https://github.com/KhanhTQ-Organization/com.ktgame.services.scene/compare/v1.0.12...v1.0.13) (2026-10-09)
 
 
