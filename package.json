@@ -11,7 +11,9 @@
   "dependencies": {
     "com.ktgame.core": "1.0.11",
     "com.ktgame.utils.class-type-reference": "1.0.4",
-    "com.ktgame.unitask": "1.0.4"
+    "com.ktgame.unitask": "1.0.4",
+    "com.ktgame.foundation": "1.0.10",
+    "com.unity.addressables": "1.19.19"
   },
   "publishConfig": {
     "registry": "http://3.25.115.5:4873"

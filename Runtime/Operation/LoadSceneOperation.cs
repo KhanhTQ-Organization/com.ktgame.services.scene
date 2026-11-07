@@ -47,6 +47,8 @@ namespace com.ktgame.services.scene
         public override bool IsDone => _asyncOperation != null && _asyncOperation.isDone;
 
         public override bool HasExecuted => _hasExecuted;
+        
+        public override bool IsFailed => _hasExecuted && _asyncOperation == null;
 
         public override event Action OnCompleted;
     }

@@ -34,9 +34,16 @@ namespace com.ktgame.services.scene
         public float Progress => IsValid ? _operation.Progress : 0f;
 
         public bool IsValid => _operation != null;
+        
+        public bool IsFailed => !IsValid || _operation.IsFailed;
 
         public void AllowSceneActivation(bool allowSceneActivation)
         {
+            if (!IsValid)
+            {
+                return;
+            }
+
             _operation.AllowSceneActivation(allowSceneActivation);
         }
     }

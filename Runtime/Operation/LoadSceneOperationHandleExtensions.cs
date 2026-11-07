@@ -8,7 +8,7 @@ namespace com.ktgame.services.scene
     {
         public static IEnumerator ToYield(this LoadSceneOperationHandle self)
         {
-            while (!self.IsDone)
+            while (!self.IsDone && !self.IsFailed)
             {
                 yield return null;
             }
@@ -24,11 +24,11 @@ namespace com.ktgame.services.scene
                 return;
             }
 
-            while (!self.IsDone)
+            while (!self.IsDone && !self.IsFailed)
             {
                 cancellationToken.ThrowIfCancellationRequested();
                 await UniTask.Yield();
             }
         }
     }
-}
+}

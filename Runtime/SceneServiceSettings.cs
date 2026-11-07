@@ -15,7 +15,9 @@ namespace com.ktgame.services.scene
 
         [SerializeField, ClassExtends(typeof(Scene))] private ClassTypeReference _startingScene;
 
-        [SerializeField] private List<SceneData> _scenes;
+        [SerializeField] private List<SceneData> _scenes = new List<SceneData>();
+        
+        [SerializeField, Min(0f)] private float _loadingProgressSpeed = SceneLoadingTask.DefaultProgressSpeed;
 
         public SceneLoaderType LoaderType
         {
@@ -29,15 +31,21 @@ namespace com.ktgame.services.scene
             set => _startingScene = new ClassTypeReference(value);
         }
 
+        public float LoadingProgressSpeed
+        {
+            get => _loadingProgressSpeed;
+            set => _loadingProgressSpeed = Mathf.Max(0f, value);
+        }
+
         public List<SceneData> Scenes
         {
-            get => _scenes ?? new List<SceneData>();
+            get => _scenes ??= new List<SceneData>();
             set => _scenes = value;
         }
 
         public SceneData GetScene(string sceneName)
         {
-            return _scenes.FirstOrDefault(scene => scene.SceneName == sceneName);
+            return Scenes.FirstOrDefault(scene => scene != null && scene.SceneName == sceneName);
         }
     }
 }

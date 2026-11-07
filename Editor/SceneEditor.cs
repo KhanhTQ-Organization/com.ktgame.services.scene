@@ -45,6 +45,18 @@ namespace com.ktgame.services.scene.editor
         }
 
         [PropertySpace(10)]
+        [BoxGroup("General Settings")]
+        [ShowInInspector]
+        [LabelText("Loading Progress Speed")]
+        [Tooltip("Smoothing speed of the scene loading progress (units per second). 1 = default (at least ~1s), 0 = report real progress with no extra wait.")]
+        [MinValue(0)]
+        public float LoadingProgressSpeed
+        {
+            get => _sceneSo.LoadingProgressSpeed;
+            set => _sceneSo.LoadingProgressSpeed = value;
+        }
+
+        [PropertySpace(10)]
         [BoxGroup("Scene List", ShowLabel = false)]
         [ListDrawerSettings(CustomAddFunction = "CreateNewParameter", ShowIndexLabels = true)]
         [TableList(AlwaysExpanded = true, DrawScrollView = false)]
@@ -67,4 +79,4 @@ namespace com.ktgame.services.scene.editor
         }
         
     }
-}
+}

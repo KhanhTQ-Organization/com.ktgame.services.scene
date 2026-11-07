@@ -9,6 +9,7 @@ namespace com.ktgame.services.scene
         public abstract float Progress { get; }
         public abstract bool IsDone { get; }
         public abstract bool HasExecuted { get; }
+        public virtual bool IsFailed => false;
         public abstract event Action OnCompleted;
     }
 }

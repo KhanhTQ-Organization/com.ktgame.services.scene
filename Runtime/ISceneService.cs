@@ -19,6 +19,9 @@ namespace com.ktgame.services.scene
 
         UniTask LoadSceneAsync(string sceneName);
 
+        // Trả về true khi scene đã load và Enter() xong; false khi bị bỏ qua (đang load scene khác) hoặc thất bại.
+        UniTask<bool> TryLoadSceneAsync(string sceneName);
+
         LoadSceneOperationHandle UnloadSceneAsync(string sceneName);
     }
-}
+}
