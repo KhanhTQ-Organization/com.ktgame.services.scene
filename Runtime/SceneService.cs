@@ -59,6 +59,11 @@ namespace com.ktgame.services.scene
                     continue;
                 }
 
+                if (!scene.SceneType.HasType)
+                {
+                    Debug.LogWarning($"Scene Type of {scene.SceneName} cannot be resolved ('{scene.SceneType.ClassRef}'): class was deleted or renamed");
+                }
+
                 if (string.IsNullOrEmpty(scene.SceneName))
                 {
                     Debug.LogError("Scene name is missing in SceneServiceSettings");
