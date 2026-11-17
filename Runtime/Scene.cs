@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using com.ktgame.core.di;
 using com.ktgame.core.manager;
 using Cysharp.Threading.Tasks;
@@ -54,20 +55,59 @@ namespace com.ktgame.services.scene
 
 		private async UniTask InstallManagers()
 		{
-			_managerInstaller.Clear();
-
-			await OnInstallManagers(_managerInstaller);
-
-			foreach (var manager in _managerInstaller.Managers)
+			var sceneName = gameObject.scene.name;
+			if (string.IsNullOrEmpty(sceneName))
 			{
-				try
+				sceneName = gameObject.name;
+			}
+
+			var report = SceneManagersInitReport.Begin(sceneName);
+			try
+			{
+				_managerInstaller.Clear();
+
+				var bindingWatch = System.Diagnostics.Stopwatch.StartNew();
+				await OnInstallManagers(_managerInstaller);
+				bindingWatch.Stop();
+				report.InstallBindingMs = bindingWatch.Elapsed.TotalMilliseconds;
+
+				// Snapshot: a manager may bind another one while initializing, which would break the enumeration.
+				var bindings = new List<KeyValuePair<Type, IManager>>(_managerInstaller.Bindings);
+
+				var order = 0;
+				foreach (var kvp in bindings)
 				{
-					await manager.Initialize();
+					var contractType = kvp.Key;
+					var manager = kvp.Value;
+					if (manager == null) continue;
+
+					var managerType = manager.GetType();
+					var contractName = contractType != null ? contractType.Name : managerType.Name;
+
+					var record = report.BeginManager(managerType.Name, contractName, manager.Priority, order++);
+					var failed = false;
+
+					try
+					{
+						var task = manager.Initialize();
+						SceneManagersInitReport.MarkSynchronousDone(record);
+						await task;
+					}
+					catch (Exception e)
+					{
+						failed = true;
+						_logger.Error($"{managerType}: {e.Message}\n{e.StackTrace}");
+					}
+					finally
+					{
+						SceneManagersInitReport.EndManager(record, failed);
+					}
 				}
-				catch (Exception e)
-				{
-					_logger.Error($"{manager.GetType()}: {e.Message}\n{e.StackTrace}");
-				}
+			}
+			finally
+			{
+				// Always close the report, otherwise the debugger shows "running..." forever after an exception.
+				report.Finish();
 			}
 		}
 
